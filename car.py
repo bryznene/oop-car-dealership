@@ -14,7 +14,7 @@ class Car:
         print(f"\n--- Car ID: {self.car_id} ---")
         print(f"Brand: {self.brand}")
         print(f"Model: {self.model}")
-        print(f"Price: ${self.price:,.2f}")
+        print(f"Price: ₱{self.price:,.2f}")
         print(f"Status: {status}\n")
     
     def sell_car(self, buyer_name):
@@ -70,7 +70,7 @@ class Dealership:
         print(f"\n=== {self.name} Inventory ===")
         for car in self.cars.values():
             status = "SOLD" if car.is_sold else "AVAILABLE"
-            print(f"ID {car.car_id}: {car.brand} {car.model} - ${car.price:,.2f} [{status}]")
+            print(f"ID {car.car_id}: {car.brand} {car.model} - ₱{car.price:,.2f} [{status}]")
         print()
     
     def find_car(self, car_id):
@@ -104,9 +104,9 @@ def main():
     dealership = Dealership("JMC Car Moto")
     
     # Add sample cars
-    dealership.add_car("Toyota", "Hiace", 28000)
-    dealership.add_car("Honda", "Civic", 24000)
-    dealership.add_car("Ford", "Raptor", 65000)
+    dealership.add_car("Toyota", "Hiace Super Grandia Elite", 3,346,000)
+    dealership.add_car("Toyota", "Fortuner GR-S 4X4 AT", 2,656,000)
+    dealership.add_car("Toyota", "Hilux GR-S 4X4 AT ", 2,480,000)
     
     while True:
         try:
