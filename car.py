@@ -104,9 +104,9 @@ def main():
     dealership = Dealership("JMC Car Moto")
     
     # Add sample cars
-    dealership.add_car("Toyota", "Hiace Super Grandia Elite", 3,346,000)
-    dealership.add_car("Toyota", "Fortuner GR-S 4X4 AT", 2,656,000)
-    dealership.add_car("Toyota", "Hilux GR-S 4X4 AT ", 2,480,000)
+    dealership.add_car("Toyota", "Hiace Super Grandia Elite", 3346000)
+    dealership.add_car("Toyota", "Fortuner GR-S 4X4 AT", 2656000)
+    dealership.add_car("Toyota", "Hilux GR-S 4X4 AT ", 2480000)
     
     while True:
         try:
