@@ -1,0 +1,114 @@
+===========================================
+1: Program Design and Class Structure
+ ===========================================
+DESIGN:
+Two classes: Car and Dealership
+
+CAR CLASS:
+- Attributes: car_id, brand, model, price, is_sold
+- Methods:
+  * display_info() - Shows car details
+  * sell_car() - Marks car as sold
+
+Why: Represents individual car data and actions
+
+DEALERSHIP CLASS:
+- Attributes: name, cars (dictionary), next_id
+- Methods:
+  * add_car() - Creates new cars with validation
+  * display_all() - Shows all inventory
+  * find_car() - Finds car by ID
+  * sell_car_by_id() - Processes sales
+
+Why: Manages the car collection
+
+JUSTIFICATION:
+- Separation of Concerns: Car handles individual data, Dealership handles collection
+- Encapsulation: Each class protects its own data
+- Real-world model: Matches actual dealership operations
+- Dictionary for fast O(1) car lookup
+
+===========================================
+2: User Input and Exception Handling
+===========================================
+
+USER INPUT:
+- Menu choices (1-5)
+- Car data (brand, model, price)
+- Car ID for lookups
+- Buyer name for sales
+
+EXCEPTION HANDLING:
+
+1. add_car() method:
+   try:
+       if not brand.strip():
+           raise ValueError("Brand cannot be empty")
+       price = float(price)
+       if price <= 0:
+           raise ValueError("Price must be > 0")
+   except ValueError as e:
+       print(f"Error: {e}")
+
+   Prevents: Empty inputs, negative prices, invalid numbers
+
+2. find_car() method:
+   try:
+       car_id = int(car_id)
+   except ValueError:
+       print("Car ID must be a number")
+
+   Prevents: Non-numeric input crashes
+
+3. main() function:
+   except KeyboardInterrupt:
+       print("Goodbye!")
+   except Exception as e:
+       print(f"Error: {e}")
+
+   Prevents: Program crashes, handles Ctrl+C
+
+ROLE:
+- Validates all user input
+- Prevents program crashes
+- Maintains data integrity
+- Provides clear error messages
+- Allows users to correct mistakes
+
+
+===========================================
+3: Limitation and Improvement
+===========================================
+
+LIMITATION:
+No data persistence - all data lost when program closes
+
+PROBLEM:
+- Can't save inventory between sessions
+- Loses sales records
+- Must re-enter data every time
+
+IMPROVEMENT - Add DataManager Class:
+
+class DataManager:
+    def save_dealership(self, dealership):
+        try:
+            data = {
+                'name': dealership.name,
+                'next_id': dealership.next_id,
+                'cars': [...]
+            }
+            with open('data.json', 'w') as f:
+                json.dump(data, f)
+            print("✓ Saved!")
+        except IOError as e:
+            print(f"Error: {e}")
+    
+    def load_dealership(self):
+        try:
+            with open('data.json', 'r') as f:
+                data = json.load(f)
+            # Recreate dealership and cars
+            return dealership
+        except FileNotFoundError:
+            return None
